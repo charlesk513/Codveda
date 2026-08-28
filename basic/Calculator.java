@@ -54,6 +54,10 @@ public class Calculator {
                     System.out.println("\nThe product of " + num1 + " and " + num2 + " is " + result);
                     break;
                 case '/':
+                    if (num2 == 0) {
+                        System.out.println("Error!, Division By zero");
+                        continue;
+                    }
                     result = calc.division(num1, num2);
                     System.out.println("\nThe quotient of " + num1 + " and " + num2 + " is " + result);
                     break;
@@ -128,10 +132,7 @@ public class Calculator {
      * return type: double
      */
     public double division(double num1, double num2) {
-        if (num2 == 0) {
-            System.out.println("error Division By zeroerror");
-            return 0.0;
-        }
+
         double result = num1 / num2;
         return result;
     }
