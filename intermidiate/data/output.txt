@@ -1,0 +1,4 @@
+File Analysis Results
+---------------------
+Number of lines: 3
+Number of words: 9
