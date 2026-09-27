@@ -11,10 +11,11 @@ public class FileAnalysis {
      * function name: analysis
      * argument: reader, writer,
      * 
-     * description: This function takes the reference to the objects of FileReader
-     * and FileWriter respectively analyzes the file by counting the number of lines
-     * and the number of words in the input.txt file and stores the analyzed
-     * information into another file called output.txt
+     * /*
+     * description: This function takes references to BufferedReader
+     * and BufferedWriter objects, analyzes the file by counting the
+     * number of lines and words in input.txt, and stores the analyzed
+     * information in output.txt.
      * 
      * return type: void
      */
@@ -45,14 +46,13 @@ public class FileAnalysis {
     }
 
     public static void main(String[] args) {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("data/input.txt"));
-            BufferedWriter writer = new BufferedWriter(new FileWriter("data/output.txt"));
+
+        try (
+                BufferedReader reader = new BufferedReader(new FileReader("data/input.txt"));
+
+                BufferedWriter writer = new BufferedWriter(new FileWriter("data/output.txt"))) {
 
             analysis(reader, writer);
-
-            reader.close();
-            writer.close();
 
             System.out.println("Analysis completed successfully!");
 
@@ -62,8 +62,7 @@ public class FileAnalysis {
 
         } catch (IOException e) {
 
-            System.out.println("Error handling the file!");
-
+            System.out.println("Error handling the file: " + e.getMessage());
         }
     }
 }

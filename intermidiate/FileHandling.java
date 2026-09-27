@@ -8,12 +8,18 @@ class FileManager {
 
     public void read(BufferedReader reader) throws IOException {
         String content;
+        boolean empty = true;
+
         while ((content = reader.readLine()) != null) {
             System.out.println(content);
+            empty = false;
         }
-        if (content == null) {
-            System.out.println("Empty file nothing to read!");
+
+        if (empty) {
+            System.out.println("Empty file, nothing to read!");
         }
+
+        reader.close();
     }
 
     public void write(FileWriter writer, String phrase) {
@@ -21,47 +27,60 @@ class FileManager {
             writer.write(phrase);
             writer.close();
             System.out.println("Successfully written data to the file");
-        } catch (Exception e) {
-            System.out.println("File doesn't exist");
+        } catch (IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
         }
-
     }
 
     public void append(FileWriter writer, String words) {
         try {
-            writer.append(words);
+            writer.append('\n' + words);
             writer.close();
             System.out.println("Successfully appended data to the file");
-        } catch (Exception e) {
-            System.out.println("File doesn't exist");
+        } catch (IOException e) {
+            System.out.println("Error appending to file: " + e.getMessage());
         }
-
     }
-
 }
 
 public class FileHandling {
+
     public static void main(String[] args) throws IOException {
+
         FileManager manage = new FileManager();
         BufferedReader enter = new BufferedReader(new InputStreamReader(System.in));
-        BufferedReader reader = new BufferedReader(new FileReader("data/output.txt"));
-        FileWriter appender = new FileWriter("data/input.txt", true);
-        FileWriter writer = new FileWriter("data/input.txt");
 
         System.out.print("read/write/append?: ");
         String input = enter.readLine().toLowerCase();
+
         if (input.equals("read")) {
+
+            BufferedReader reader = new BufferedReader(new FileReader("data/data.txt"));
+
             manage.read(reader);
+
         } else if (input.equals("write")) {
+
             System.out.print("Enter the data: ");
             String data = enter.readLine();
+
+            FileWriter writer = new FileWriter("data/data.txt");
+
             manage.write(writer, data);
-        }
-        if (input.equals("append")) {
+
+        } else if (input.equals("append")) {
+
             System.out.print("Enter the data: ");
             String data = enter.readLine();
+
+            FileWriter appender = new FileWriter("data/data.txt", true);
+
             manage.append(appender, data);
+
+        } else {
+            System.out.println("Invalid operation!");
         }
 
+        enter.close();
     }
 }

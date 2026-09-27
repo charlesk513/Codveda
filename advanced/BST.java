@@ -176,7 +176,6 @@ public class BST {
         while (current.left != null) {
             current = current.left;
         }
-
         return current;
     }
 
@@ -333,7 +332,7 @@ public class BST {
         System.out.println("In-order traversal after deletion:");
         bst.inOrder();
 
-        System.out.println("The smallest node in the BST is: " + bst.findMinimum());
-        System.out.println("The largest node in the BST is: " + bst.findMaximum());
+        System.out.println("The smallest node in the BST is: " + bst.findMinimum().data);
+        System.out.println("The largest node in the BST is: " + bst.findMaximum().data);
     }
 }
