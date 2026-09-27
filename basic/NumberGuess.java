@@ -11,7 +11,7 @@ public class NumberGuess {
         int i = 0;
         while (true) {
             i = i + 1; // counter to count how many times a player guesses the number
-            System.out.println(random);
+
             System.out.print("Guess: ");
             int user_value = Integer.parseInt(reader.readLine());
 

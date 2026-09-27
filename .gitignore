@@ -17,3 +17,6 @@ build/
 # OS files
 .DS_Store
 Thumbs.db
+
+# database credentials
+.env
